@@ -1,4 +1,4 @@
-import urllib2
+from urllib import request
 import json
 
 REST_URL = "http://data.bioontology.org"
@@ -6,9 +6,9 @@ API_KEY = ""
 
 
 def get_json(url):
-    opener = urllib2.build_opener()
+    opener = request.build_opener()
     opener.addheaders = [('Authorization', 'apikey token=' + API_KEY)]
-    return json.loads(opener.open(url).read())
+    return json.loads(opener.open(url).read().decode())
 
 # Get all ontologies from the REST service and parse the JSON
 ontologies = get_json(REST_URL+"/ontologies")
@@ -36,4 +36,4 @@ while next_page:
 
 # Output the labels
 for label in labels:
-    print label
+    print(label)

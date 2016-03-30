@@ -1,6 +1,4 @@
-heart
-lung
-experiment
-human
-brain
-melanoma
+pulmonary+embolism
+pulmonary+arterial+hypertension
+ct
+ctpa
