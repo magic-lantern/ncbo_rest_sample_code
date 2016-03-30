@@ -38,18 +38,22 @@ def print_annotations(annotations, get_class=True):
 
         print("\n\n")
 
-text_to_annotate = "The patient is status post previous median sternotomy.  The heart size is normal.  There is enlargement of the central pulmonary arteries which rapidly taper suggesting the possibility of pulmonary artery hypertension.  There is apparent bilateral upper lobe emphysema as well as minimal linear scarring in both upper lobes.  No confluent areas of consolidation are observed in either lungs, and there is no evidence of pleural effusion.  Degenerative changes are noted within the spine."
+text_to_annotate = "There is enlargement of the central pulmonary arteries which rapidly taper suggesting the possibility of pulmonary artery hypertension.  There is apparent bilateral upper lobe emphysema as well as minimal linear scarring in both upper lobes.  No confluent areas of consolidation are observed in either lungs, and there is no evidence of pleural effusion."
 
 # Annotate using the provided text
-annotations = get_json(REST_URL + "/annotator?text=" + parse.quote(text_to_annotate))
-
-# print out annotation details
+#annotations = get_json(REST_URL + "/annotator?text=" + parse.quote(text_to_annotate))
+#annotations = get_json(REST_URL + "/annotator?minimum_match_length=2&ontologies=http://data.bioontology.org/ontologies/DOID&text=" + parse.quote(text_to_annotate))
+annotations = get_json(REST_URL + "/annotator?longest_only=true&minimum_match_length=2&ontologies=http://data.bioontology.org/ontologies/RADLEX&text=" + parse.quote(text_to_annotate))
 print_annotations(annotations)
 
 # Annotate with hierarchy information
-annotations = get_json(REST_URL + "/annotator?max_level=3&text=" + parse.quote(text_to_annotate))
+#annotations = get_json(REST_URL + "/annotator?max_level=3&text=" + parse.quote(text_to_annotate))
+#annotations = get_json(REST_URL + "/annotator?minimum_match_length=2&ontologies=http://data.bioontology.org/ontologies/DOID&text=&max_level=3&text=" + parse.quote(text_to_annotate))
+annotations = get_json(REST_URL + "/annotator?longest_only=true&minimum_match_length=2&ontologies=http://data.bioontology.org/ontologies/RADLEX&text=&max_level=3&text=" + parse.quote(text_to_annotate))
 print_annotations(annotations)
 
 # Annotate with prefLabel, synonym, definition returned
-annotations = get_json(REST_URL + "/annotator?include=prefLabel,synonym,definition&text=" + parse.quote(text_to_annotate))
+#annotations = get_json(REST_URL + "/annotator?include=prefLabel,synonym,definition&text=" + parse.quote(text_to_annotate))
+#annotations = get_json(REST_URL + "/annotator?minimum_match_length=2&ontologies=http://data.bioontology.org/ontologies/DOID&text=&include=prefLabel,synonym,definition&text=" + parse.quote(text_to_annotate))
+annotations = get_json(REST_URL + "/annotator?longest_only=true&minimum_match_length=2&ontologies=http://data.bioontology.org/ontologies/RADLEX&text=&include=prefLabel,synonym,definition&text=" + parse.quote(text_to_annotate))
 print_annotations(annotations, False)
